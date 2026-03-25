@@ -783,18 +783,18 @@
       };
 
       try {
-        const res = await fetch('https://api.web3forms.com/submit', {
+        const res = await fetch('https://formsubmit.co/ajax/ramyelgaafary@hotmail.com', {
           method:  'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body:    JSON.stringify({
-            access_key: '965228',
-            from_name:  'Isabel & Ramy Wedding RSVP',
             ...payload,
+            _subject: "RSVP — Isabel & Ramy's Wedding",
+            _captcha: 'false',
           }),
         });
 
         const data = await res.json();
-        if (res.ok && data.success) {
+        if (data.success === 'true' || data.success === true) {
           document.getElementById('form').style.display = 'none';
           document.getElementById('success').classList.add('visible');
         } else {
