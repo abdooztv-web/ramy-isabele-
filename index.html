@@ -793,12 +793,12 @@
           }),
         });
 
-        if (res.ok) {
+        const data = await res.json();
+        if (res.ok && data.success) {
           document.getElementById('form').style.display = 'none';
           document.getElementById('success').classList.add('visible');
         } else {
-          const data = await res.json();
-          alert('Something went wrong: ' + (data.error || 'please try again.'));
+          alert('Error: ' + JSON.stringify(data));
           btn.textContent = 'Confirm Attendance';
           btn.disabled = false;
         }
