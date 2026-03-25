@@ -548,15 +548,16 @@
       .g-item--tall  { min-height: 280px; }
       .g-item--wide  { grid-column: span 2; aspect-ratio: 4/3; }
 
-      .rsvp-section  { padding: 5rem 1.75rem; }
+      .rsvp-section  { padding: 3.5rem 1.75rem; }
       .form-row      { grid-template-columns: 1fr; }
 
       .venue-section {
         grid-template-columns: 1fr;
+        min-height: unset;
       }
 
-      .venue-map iframe { min-height: 300px; }
-      .venue-info { padding: 3rem 1.75rem; border-left: none; border-top: 1px solid var(--border); }
+      .venue-map iframe { min-height: 240px; height: 240px; }
+      .venue-info { padding: 2.5rem 1.75rem; border-left: none; border-top: 1px solid var(--border); }
 
       footer {
         padding: 3rem 1.75rem;
@@ -782,10 +783,14 @@
       };
 
       try {
-        const res = await fetch('https://formspree.io/f/xdkoqyzw', {
+        const res = await fetch('https://api.web3forms.com/submit', {
           method:  'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body:    JSON.stringify(payload),
+          body:    JSON.stringify({
+            access_key: 'YOUR_ACCESS_KEY',
+            from_name:  'Isabel & Ramy Wedding RSVP',
+            ...payload,
+          }),
         });
 
         if (res.ok) {
